@@ -6,11 +6,11 @@
   tags:
     - fonts
 - name: Install Nerd Font
-  shell: curl -L -o "{{ lookup('env', 'HOME') }}/.local/share/fonts/0xProto.tar.xz" https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.0/0xProto.tar.xz
+  shell: curl -L -o "{{ lookup('env', 'HOME') }}/.local/share/fonts/Meslo.tar.xz" https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.0/Meslo.tar.xz
   tags:
     - fonts
 - name: Extract Nerd font
-  shell: tar -xzvf "{{ lookup('env', 'HOME') }}/.local/share/fonts/0xProto.tar.xz"
+  shell: tar -xvf "{{ lookup('env', 'HOME') }}/.local/share/fonts/Meslo.tar.xz"
   tags:
     - fonts
 - name: Clear and regenerate font cache
@@ -18,6 +18,6 @@
   tags:
     - fonts
 - name: Remove tarball file
-  shell: rm "{{ lookup('env', 'HOME') }}/.local/share/fonts/0xProto.tar.xz"
+  shell: rm "{{ lookup('env', 'HOME') }}/.local/share/fonts/Meslo.tar.xz"
   tags:
     - fonts
