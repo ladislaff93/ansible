@@ -1,0 +1,16 @@
+- name: Install Neovim 
+  apt: name=neovim
+  tags:
+    - vim
+- name: Install Rust
+  shell: curl --proto '=https' -y --tlsv1.2 -sSf https://sh.rustup.rs | sh
+  tags:
+    - language
+- name: Install Python
+  apt: name=python3.11
+  tags:
+    - language
+- name: Install Lua
+  apt: name=lua5.1
+  tags:
+    - language

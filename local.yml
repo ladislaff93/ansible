@@ -1,0 +1,26 @@
+- hosts: localhost
+  vars:
+    source_key: "./.ssh/id_ed25519"
+    dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
+  become: true
+  pre_tasks:
+    - name: Update apt 
+      apt: 
+        update_cache: true
+      tags:
+        - awesome
+        - bash
+        - language
+        - vim
+        - vpn
+  tasks:
+  - include_tasks: ./tasks/install_ssh.yml
+  - include_tasks: ./tasks/init_install.yml
+  - include_tasks: ./tasks/git_setup.yml
+  - include_tasks: ./tasks/install_vscode.yml
+  - include_tasks: ./tasks/install_chrome.yml
+  - include_tasks: ./tasks/bash.yml
+  - include_tasks: ./tasks/wm.yml
+  - include_tasks: ./tasks/dev_tasks.yml
+  - include_tasks: ./tasks/app.yml
+  - include_tasks: ./tasks/install_fonts.yml

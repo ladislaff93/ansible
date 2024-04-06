@@ -1,0 +1,35 @@
+- name: Install apt-transport, curl, gpg, git, flatpak
+  apt: 
+    name: [apt-transport-https, curl, gpg, git, flatpak]
+  tags:
+    - awesome
+    - bash
+    - language
+    - vim
+    - vpn
+
+- name: Update kernel
+  apt: 
+    name: [linux-headers-amd64, linux-image-amd64]
+
+- name: Adding sources into apt/sources.list 
+  blockinfile:
+    path: /etc/apt/sources.list
+    append_newline: true
+    prepend_newline: true
+    create: true
+    block: |
+      deb http://deb.debian.org/debian/ bookworm main contrib non-free non-free-firmware
+      deb-src http://deb.debian.org/debian bookworm main contrib non-free non-free-firmware
+      deb http://deb.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware
+      deb-src http://deb.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware
+      deb http://deb.debian.org/debian bookworm-updates main contrib non-free non-free-firmware
+      deb-src http://deb.debian.org/debian bookworm-updates main contrib non-free non-free-firmware
+
+- name: Update apt 
+  apt: 
+    update_cache: true
+
+- name: Install Nvidia drivers
+  apt: 
+    name: [nvidia-driver, firmware-misc-nonfree]

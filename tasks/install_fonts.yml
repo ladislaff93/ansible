@@ -1,0 +1,23 @@
+- name: Check if fonts folder exists
+  file:
+    path: ~/.local/share/fonts
+    state: directory
+    mode: 0700
+  tags:
+    - fonts
+- name: Install Nerd Font
+  shell: curl -L -o "{{ lookup('env', 'HOME') }}/.local/share/fonts/0xProto.tar.xz" https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.0/0xProto.tar.xz
+  tags:
+    - fonts
+- name: Extract Nerd font
+  shell: tar -xzvf "{{ lookup('env', 'HOME') }}/.local/share/fonts/0xProto.tar.xz"
+  tags:
+    - fonts
+- name: Clear and regenerate font cache
+  shell: fc-cache -f -v
+  tags:
+    - fonts
+- name: Remove tarball file
+  shell: rm "{{ lookup('env', 'HOME') }}/.local/share/fonts/0xProto.tar.xz"
+  tags:
+    - fonts

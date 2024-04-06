@@ -1,0 +1,38 @@
+- name: Install Flameshot
+  apt: name=flameshot
+  tags:
+    - apps
+- name: Install qbittorrent
+  apt: name=qbittorrent
+  tags:
+    - apps
+- name: Install obs flatpak
+  flatpak: 
+    name: https://dl.flathub.org/repo/appstream/com.obsproject.Studio.flatpakref
+  tags:
+    - apps
+- name: Install spotify flatpak
+  flatpak:
+    name: https://dl.flathub.org/repo/appstream/com.spotify.Client.flatpakref
+  tags:
+    - apps
+- name: Install alacritty
+  apt: name=alacritty
+  tags:
+    - apps
+- name: Install btop
+  apt: name=btop
+  tags:
+    - apps
+- name: Install gimp
+  apt: name=gimp
+  tags:
+    - apps
+- name: Install vlc
+  apt: name=vlc
+  tags:
+    - apps
+- name: Install fzf
+  apt: name=fzf
+  tags:
+    - apps
