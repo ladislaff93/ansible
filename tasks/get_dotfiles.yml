@@ -1,13 +1,14 @@
-#TBD
-# - name: Installing stow
-#   apt: name=stow
-# - name: Cloning .dotfiles
-#   ansible.builtin.git:
-#     repo: 'git@github.com:ThePrimeagen/.dotfiles.git'
-#     dest: "{{ lookup('env', 'HOME') }}/.dotfiles"
-#     recursive: yes
-#     update: yes
-#     accept_hostkey: yes
-#     version: master
-# - name: Stow dotfiles
-#   shell: cd $HOME/.dotfiles && ./ubuntu
+- name: Installing stow
+  apt: name=stow
+
+- name: Cloning .dotfiles
+  ansible.builtin.git:
+    repo: 'git@github.com:ladislaff93/.dotfiles.git'
+    dest: "{{ lookup('env', 'HOME') }}/.dotfiles"
+    recursive: yes
+    update: yes
+    accept_hostkey: yes
+    version: master
+
+- name: Stow dotfiles
+  shell: cd $HOME/.dotfiles && stow --target=$HOME/ tmux && stow --target=$HOME/ bash

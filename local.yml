@@ -24,3 +24,4 @@
   - include_tasks: ./tasks/dev_tasks.yml
   - include_tasks: ./tasks/app.yml
   - include_tasks: ./tasks/install_fonts.yml
+  - include_tasks: ./tasks/get_dotfiles.yml
