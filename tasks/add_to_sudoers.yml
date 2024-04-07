@@ -1,0 +1,2 @@
+- name: Adding user into sudoers
+  shell: usermod -aG sudo ladislaff
