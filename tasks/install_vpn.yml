@@ -1,23 +1,33 @@
 - name: Adding Mullvad VPN signing key
+  become: yes
+  become_user: "{{ root_user }}"
   shell: sudo curl -fsSLo /usr/share/keyrings/mullvad-keyring.asc https://repository.mullvad.net/deb/mullvad-keyring.asc
   tags:
     - vpn
 
 - name: Add Mullvad VPN the stable repository
+  become: yes
+  become_user: "{{ root_user }}"
   shell: echo "deb [signed-by=/usr/share/keyrings/mullvad-keyring.asc arch=$( dpkg --print-architecture )] https://repository.mullvad.net/deb/stable $(lsb_release -cs) bookworm main" | sudo tee /etc/apt/sources.list.d/mullvad.list
   tags:
     - vpn
 
 - name: Update apt 
+  become: yes
+  become_user: "{{ root_user }}"
   apt: 
     update_cache: true
 
 - name: Install mullvad
+  become: yes
+  become_user: "{{ root_user }}"
   apt: name=mullvad-vpn
   tags:
     - vpn
 
 - name: Create symlink mullvad gui 
+  become: yes
+  become_user: "{{ root_user }}"
   shell: sudo ln -s /opt/Mullvad VPN/mullvad-gui /
   tags:
     - vpn

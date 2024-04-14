@@ -1,14 +1,22 @@
 - name: Add Google Chrome Linux signing key
+  become: yes
+  become_user: "{{ root_user }}"
   shell: curl -fSsL https://dl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor | sudo tee /usr/share/keyrings/google-chrome.gpg >> /dev/null
 
 - name: Adding the Google Chrome repository
+  become: yes
+  become_user: "{{ root_user }}"
   shell: echo deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main | sudo tee /etc/apt/sources.list.d/google-chrome.list
 
 - name: Update apt 
+  become: yes
+  become_user: "{{ root_user }}"
   apt: 
     update_cache: true
 
 - name: Install chrome
+  become: yes
+  become_user: "{{ root_user }}"
   apt: name=google-chrome-stable
   tags:
     - apps

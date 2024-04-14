@@ -1,14 +1,34 @@
 - name: Installing stow
+  become: yes
+  become_user: "{{ root_user }}"
   apt: name=stow
 
 - name: Cloning .dotfiles
+  become: yes
+  become_user: "{{ main_user }}"
   ansible.builtin.git:
     repo: 'git@github.com:ladislaff93/.dotfiles.git'
     dest: "{{ lookup('env', 'HOME') }}/.dotfiles"
     recursive: yes
     update: yes
-    accept_hostkey: yes
+    # accept_hostkey: yes
+    accept_newhostkey: yes
     version: main
+ 
+- name: Remove bashrc
+  become: yes
+  become_user: "{{ main_user }}"
+  ansible.builtin.file:
+    path: /home/{{ main_user }}/.bashrc
+    state: absent
 
 - name: Stow dotfiles
-  shell: cd $HOME/.dotfiles && stow --target=$HOME/ tmux && stow --target=$HOME/ bash
+  become: yes
+  become_user: "{{ root_user }}"
+  shell: cd /home/{{ main_user }}/.dotfiles && 
+    stow --target=/home/{{ main_user }}/ tmux && 
+    stow --target=/home/{{ main_user }}/ neovim &&
+    stow --target=/home/{{ main_user }}/ terminal &&
+    stow --target=/home/{{ main_user }}/ wm &&
+    stow --target=/home/{{ main_user }}/ bash &&
+    mv tmux-sessionazer /home/{{ main_user }}/

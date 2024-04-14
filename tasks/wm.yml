@@ -1,16 +1,24 @@
 - name: Install Awesome WM
+  become: yes
+  become_user: "{{ root_user }}"
   apt: name=awesome
   tags:
     - awesome
 - name: Install Picom
+  become: yes
+  become_user: "{{ root_user }}"
   apt: name=picom
   tags:
     - awesome
 - name: Install i3lock-fancy
+  become: yes
+  become_user: "{{ root_user }}"
   apt: name=i3lock-fancy
   tags:
     - awesome
 - name: Install nm applet && pnmixer
+  become: yes
+  become_user: "{{ root_user }}"
   apt: 
     name: [network-manager, pnmixer]
   tags:

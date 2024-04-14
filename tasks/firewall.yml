@@ -1,0 +1,36 @@
+- name: Install ufw fail2ban
+  become: yes
+  become_user: "{{ root_user }}"
+  apt:
+    name: ["ufw", "fail2ban"]
+
+- name: Set Up UFW
+  become: yes
+  become_user: "{{ root_user }}"
+  community.general.ufw:
+    state: enabled
+  community.general.ufw:
+      rule: limit
+      port: 22
+      proto: tcp 
+  community.general.ufw:
+      rule: limit
+      port: 80
+      proto: tcp 
+  community.general.ufw:
+      rule: limit
+      port: 443
+      proto: tcp 
+  community.general.ufw:
+      default: deny
+      direction: incoming
+  community.general.ufw:
+      default: allow
+      direction: outgoing
+
+- name: Set Up F2B
+  become: yes
+  become_user: "{{ root_user }}"
+  copy:
+    src: ./jail.conf
+    dest: "/etc/fail2ban/jail.conf"

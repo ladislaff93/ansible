@@ -1,12 +1,12 @@
 - name: Install bash
+  become: yes
+  become_user: "{{ root_user }}"
   apt: name=bash
   tags:
     - bash
-- name: Change shell
-  shell: chsh -s 'which bash'
-  tags:
-    - bash
 - name: Install Oh My Bash
+  become: yes
+  become_user: "{{ root_user }}"
   shell: bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
   tags:
     - bash

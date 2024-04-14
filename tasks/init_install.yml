@@ -1,6 +1,8 @@
-- name: Install apt-transport, curl, gpg, git, flatpak
+- name: Install dependecies
+  become: yes
+  become_user: root
   apt: 
-    name: [apt-transport-https, curl, gpg, git, flatpak]
+    name: [apt-transport-https, curl, gpg, git, fontconfig]
   tags:
     - awesome
     - bash
@@ -9,10 +11,16 @@
     - vpn
 
 - name: Update kernel
+  become: yes
+  become_user: root
+  when: ansible_distribution == 'Debian'
   apt: 
-    name: [linux-headers-amd64, linux-image-amd64]
+    name: [linux-headers-amd64, linux-image-amd65]
 
 - name: Adding sources into apt/sources.list 
+  become: yes
+  become_user: root
+  when: ansible_distribution == 'Debian'
   blockinfile:
     path: /etc/apt/sources.list
     append_newline: true
@@ -27,9 +35,21 @@
       deb-src http://deb.debian.org/debian bookworm-updates main contrib non-free non-free-firmware
 
 - name: Update apt 
+  become: yes
+  become_user: root
+  when: ansible_distribution == 'Debian'
   apt: 
     update_cache: true
 
 - name: Install Nvidia drivers
+  become: yes
+  become_user: root
+  when: ansible_distribution == 'Debian'
   apt: 
     name: [nvidia-driver, firmware-misc-nonfree]
+
+- name: Install Nvidia drivers
+  become: yes
+  become_user: root
+  when: ansible_distribution == 'Ubuntu'
+  shell: sudo ubuntu-drivers install

@@ -1,18 +1,28 @@
 - name: Add Microsoft signing key 1
+  become: yes
+  become_user: "{{ root_user }}"
   shell: wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
 
 - name: Add Microsoft signing key 2
+  become: yes
+  become_user: "{{ root_user }}"
   shell: sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
 
 - name: Adding the VS Code Repository
+  become: yes
+  become_user: "{{ root_user }}"
   shell: sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
 
 - name: Remove Microsoft gpg
   shell: rm -f packages.microsoft.gpg
 
 - name: Update apt 
+  become: yes
+  become_user: "{{ root_user }}"
   apt: 
     update_cache: true
 
 - name: Install VSCode
+  become: yes
+  become_user: "{{ root_user }}"
   apt: name=code

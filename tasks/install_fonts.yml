@@ -1,4 +1,6 @@
 - name: Check if fonts folder exists
+  become: yes
+  become_user: "{{ root_user }}"
   file:
     path: "{{ lookup('env', 'HOME') }}/.local/share/fonts"
     state: directory
@@ -6,18 +8,26 @@
   tags:
     - fonts
 - name: Install Nerd Font
+  become: yes
+  become_user: "{{ root_user }}"
   shell: curl -L -o "{{ lookup('env', 'HOME') }}/.local/share/fonts/Meslo.tar.xz" https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.0/Meslo.tar.xz
   tags:
     - fonts
 - name: Extract Nerd font
-  shell: tar -xvf "{{ lookup('env', 'HOME') }}/.local/share/fonts/Meslo.tar.xz"
+  become: yes
+  become_user: "{{ root_user }}"
+  shell: tar -xvf "{{ lookup('env', 'HOME') }}/.local/share/fonts/Meslo.tar.xz" -C "{{ lookup('env', 'HOME') }}/.local/share/fonts/"
   tags:
     - fonts
 - name: Clear and regenerate font cache
+  become: yes
+  become_user: "{{ root_user }}"
   shell: fc-cache -f -v
   tags:
     - fonts
 - name: Remove tarball file
+  become: yes
+  become_user: "{{ root_user }}"
   shell: rm "{{ lookup('env', 'HOME') }}/.local/share/fonts/Meslo.tar.xz"
   tags:
     - fonts

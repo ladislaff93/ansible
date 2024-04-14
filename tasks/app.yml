@@ -1,38 +1,87 @@
+- name: Install flatpak
+  become: yes
+  become_user: "{{ root_user }}"
+  apt: name=flatpak
+  tags:
+    - apps
+- name: Install obs flatpak
+  become: yes
+  become_user: "{{ root_user }}"
+  flatpak: 
+    name: https://dl.flathub.org/repo/appstream/com.obsproject.Studio.flatpakref
+    state: present
+    method: user
+  tags:
+    - apps
+# - name: Install spotify flatpak
+#   flatpak:
+#     name: https://dl.flathub.org/repo/appstream/com.spotify.Client.flatpakref
+#     state: present
+#     method: user
+#   tags:
+#     - apps
 - name: Install Flameshot
+  become: yes
+  become_user: "{{ root_user }}"
   apt: name=flameshot
   tags:
     - apps
 - name: Install qbittorrent
+  become: yes
+  become_user: "{{ root_user }}"
   apt: name=qbittorrent
   tags:
     - apps
-- name: Install obs flatpak
-  flatpak: 
-    name: https://dl.flathub.org/repo/appstream/com.obsproject.Studio.flatpakref
+- name: Install alacritty
+  become: yes
+  become_user: "{{ root_user }}"
+  when: ansible_distribution == 'Debian'
+  apt: name=alacritty
   tags:
     - apps
-- name: Install spotify flatpak
-  flatpak:
-    name: https://dl.flathub.org/repo/appstream/com.spotify.Client.flatpakref
+- name: Add specified repository into sources list
+  become: yes
+  become_user: "{{ root_user }}"
+  when: ansible_distribution == 'Ubuntu'
+  ansible.builtin.apt_repository:
+    repo: ppa:aslatter/ppa
+    state: present
   tags:
     - apps
 - name: Install alacritty
+  become: yes
+  become_user: "{{ root_user }}"
+  when: ansible_distribution == 'Ubuntu'
   apt: name=alacritty
   tags:
     - apps
 - name: Install btop
+  become: yes
+  become_user: "{{ root_user }}"
   apt: name=btop
   tags:
     - apps
 - name: Install gimp
+  become: yes
+  become_user: "{{ root_user }}"
   apt: name=gimp
   tags:
     - apps
 - name: Install vlc
+  become: yes
+  become_user: "{{ root_user }}"
   apt: name=vlc
   tags:
     - apps
 - name: Install fzf
+  become: yes
+  become_user: "{{ root_user }}"
   apt: name=fzf
+  tags:
+    - apps
+- name: Install tmux
+  become: yes
+  become_user: "{{ root_user }}"
+  apt: name=tmux
   tags:
     - apps
