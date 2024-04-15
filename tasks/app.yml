@@ -13,13 +13,13 @@
     method: user
   tags:
     - apps
-# - name: Install spotify flatpak
-#   flatpak:
-#     name: https://dl.flathub.org/repo/appstream/com.spotify.Client.flatpakref
-#     state: present
-#     method: user
-#   tags:
-#     - apps
+- name: Install spotify flatpak
+  flatpak:
+    name: https://dl.flathub.org/repo/appstream/com.spotify.Client.flatpakref
+    state: present
+    method: user
+  tags:
+    - apps
 - name: Install Flameshot
   become: yes
   become_user: "{{ root_user }}"
