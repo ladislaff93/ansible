@@ -1,4 +1,6 @@
 - name: Git personal setup email
+  become: yes
+  become_user: "{{ main_user }}"
   git_config:
     name: user.email
     scope: global
@@ -6,6 +8,8 @@
   tags:
   - git
 - name: Git personal setup name
+  become: yes
+  become_user: "{{ main_user }}"
   git_config:
     name: user.name
     scope: global
