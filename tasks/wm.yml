@@ -16,10 +16,29 @@
   apt: name=i3lock-fancy
   tags:
     - awesome
-- name: Install nm applet && pnmixer
+- name: Install nm applet, pnmixer, lxde, xbacklight
   become: yes
   become_user: "{{ root_user }}"
   apt: 
-    name: [network-manager, pnmixer]
+    name: [network-manager, pnmixer, lxde, xbacklight]
+  tags:
+    - awesome
+
+- name: Ensure .ssh directory exists.
+  become: yes
+  become_user: "{{ main_user }}"
+  file:
+    dest: "{{ /etc/X11/xorg.conf.d | dirname }}"
+    mode: 0700
+    state: directory
+  tags:
+    - awesome
+
+- name:  copy touchpad.conf file
+  become: yes
+  become_user: "{{ main_user }}"
+  copy:
+    src: ./30touchpad.conf
+    dest: /etc/X11/xorg.conf.d/30touchpad.conf
   tags:
     - awesome
