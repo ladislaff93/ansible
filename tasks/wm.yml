@@ -16,11 +16,11 @@
   apt: name=i3lock-fancy
   tags:
     - awesome
-- name: Install nm applet, pnmixer, lxde, xbacklight
+- name: Install nm applet, pnmixer, lxde, xbacklight, xfce4-power-manager
   become: yes
   become_user: "{{ root_user }}"
   apt: 
-    name: [network-manager, pnmixer, lxde, xbacklight]
+    name: [network-manager, pnmixer, lxde, xbacklight, xfce4-power-manager]
   tags:
     - awesome
 
