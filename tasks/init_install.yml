@@ -48,8 +48,14 @@
   apt: 
     name: [nvidia-driver, firmware-misc-nonfree]
 
-- name: Install Nvidia drivers
+- name: Install drivers
   become: yes
   become_user: root
   when: ansible_distribution == 'Ubuntu'
   shell: sudo ubuntu-drivers install
+
+- name: Install nvidia drivers
+  become: yes
+  become_user: root
+  when: ansible_distribution == 'Ubuntu'
+  apt: name=nvidia-driver-510

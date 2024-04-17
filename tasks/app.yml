@@ -85,3 +85,10 @@
   apt: name=tmux
   tags:
     - apps
+
+- name: Install Easy effects
+  become: yes
+  become_user: "{{ root_user }}"
+  apt: name=easyeffects
+  tags:
+    - apps
