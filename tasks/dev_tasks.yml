@@ -1,3 +1,8 @@
+
+  # sudo add-apt-repository ppa:neovim-ppa/stable
+  # sudo apt-get update
+  # sudo apt-get install neovim
+  # Need to intall newest neovim version
 - name: Install Neovim 
   become: yes
   become_user: "{{ root_user }}"
