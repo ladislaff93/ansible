@@ -30,6 +30,9 @@
   become: yes
   become_user: "{{ main_user }}"
   shell: eval "$(ssh-agent -s)" && ssh-add "/home/{{ main_user }}/.ssh/id_ed25519"
+  tags:
+    - ssh
+
 
 # - name: Set authorized key took from file
 #   become: yes

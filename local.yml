@@ -19,10 +19,11 @@
         - vim
         - vpn
         - ssh
+        - fonts
   tasks:
     - block:
-      - include_tasks: ./tasks/install_ssh.yml
       - include_tasks: ./tasks/init_install.yml
+      - include_tasks: ./tasks/install_ssh.yml
       - include_tasks: ./tasks/git_setup.yml
       - include_tasks: ./tasks/install_vscode.yml
       - include_tasks: ./tasks/install_chrome.yml
