@@ -69,6 +69,18 @@
   tags:
     - apps
 
+- name: Install TMP plugin for tmux
+  become: yes
+  become_user: "{{ main_user }}"
+  ansible.builtin.git:
+    repo: 'git@github.com:tmux-plugins/tpm.git'
+    dest: "{{ lookup('env', 'HOME') }}/.tmux/plugins/tpm"
+    recursive: yes
+    update: yes
+    # accept_hostkey: yes
+    accept_newhostkey: yes
+    version: main
+
 - name: Install Easy effects
   become: yes
   become_user: "{{ root_user }}"
