@@ -12,7 +12,7 @@
 - name: Install Rust
   become: yes
   become_user: "{{ root_user }}"
-  shell: curl --proto '=https' -y --tlsv1.2 -sSf https://sh.rustup.rs | sh
+  shell: "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
   tags:
     - language
 - name: Install Python

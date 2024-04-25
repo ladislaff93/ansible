@@ -27,7 +27,7 @@
 
 - name: Create symlink mullvad gui 
   become: yes
-  become_user: "{{ root_user }}"
-  shell: sudo ln -s /opt/Mullvad VPN/mullvad-gui /
+  become_user: "{{ main_user }}"
+  shell: sudo ln -s /opt/Mullvad\ VPN/mullvad-gui /home/{{ main_user }}/
   tags:
     - vpn
