@@ -23,7 +23,7 @@
     name: [network-manager, pnmixer, lxde, brightnessctl, xfce4-power-manager]
   tags:
     - awesome
-
+## TODO: Add brightnessctl need sudo to change brightness https://github.com/i3/i3/discussions/4763
 - name: Ensure directory exists.
   become: yes
   become_user: "{{ root_user }}"
