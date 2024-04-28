@@ -7,7 +7,7 @@
 - name: Install Oh My Bash
   become: yes
   become_user: "{{ root_user }}"
-  shell: bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
+  shell: bash -c -y "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
   tags:
     - bash
 

@@ -1,25 +1,16 @@
-- name: Check if fonts folder exists
-  become: yes
-  become_user: "{{ main_user }}"
-  file:
-    path: "{{ lookup('env', 'HOME') }}/.local/share/fonts"
-    state: directory
-    mode: 0700
-  tags:
-    - fonts
 
 - name: Extract Nerd font
   become: yes
   become_user: "{{ main_user }}"
   copy:
-    src: ./fonts/*
-    dest: "{{ lookup('env', 'HOME') }}/.local/share/fonts"
+  src: "./fonts"
+    dest: "/home/{{ main_user }}/.local/share/fonts/"
   tags:
     - fonts
      
 - name: Clear and regenerate font cache
   become: yes
-  become_user: "{{ main_user }}"
+  become_user: "{{ root_user }}"
   shell: fc-cache -f -v
   tags:
     - fonts
